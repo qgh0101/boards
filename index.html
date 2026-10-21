@@ -1,0 +1,35 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>乔总看板</title><link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-title" content="乔总看板"><meta name="application-name" content="乔总看板"><meta name="theme-color" content="#2d5a3d">
+<style>
+body{margin:0;background:#f6f4ef;color:#1f2a22;font:16px/1.5 -apple-system,"PingFang SC","Noto Sans SC",sans-serif}
+main{max-width:560px;margin:0 auto;padding:28px 16px 40px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:1px}
+.sub{color:#6b6f66;font-size:14px;margin:0 0 22px}
+ol{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+a.c{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:14px;padding:18px 18px 16px;border-left:6px solid var(--k)}
+a.c:active{background:#ecebe4}
+.t{font-size:20px;font-weight:600}
+.d{color:#4a5048;font-size:14px;margin:2px 0 8px}
+.u{color:#8a8d84;font-size:12px}
+</style></head><body><main>
+<h1>乔总看板</h1><p class="sub">五个看板都在这儿，点卡片进入。</p>
+<ol>
+<li><a class="c" style="--k:#c0392b" href="https://qgh0101.github.io/stockbook/" data-repo="stockbook"><div class="t">股票看板</div><div class="d">持仓、买卖方案、实时行情</div><div class="u">更新：读取中</div></a></li>
+<li><a class="c" style="--k:#2d5a3d" href="https://qgh0101.github.io/tasks/" data-repo="tasks"><div class="t">任务台账</div><div class="d">各项待办和截止日期</div><div class="u">更新：读取中</div></a></li>
+<li><a class="c" style="--k:#8e6b2e" href="zhongao/"><div class="t">中澳广场周看板</div><div class="d">收支、物业费收缴率、欠费户</div><div class="u">需密码</div></a></li>
+<li><a class="c" style="--k:#2e5e8e" href="supermarket/"><div class="t">超市经营报表</div><div class="d">三店销售、进销差率、品类结构</div><div class="u">需密码</div></a></li>
+<li><a class="c" style="--k:#6b4a8e" href="https://qgh0101.github.io/sirenbeike/" data-repo="sirenbeike"><div class="t">乔的私人贝壳</div><div class="d">苏州二手房成交价</div><div class="u">更新：读取中</div></a></li>
+</ol></main>
+<script>
+document.querySelectorAll('[data-repo]').forEach(function(a){
+ var u=a.querySelector('.u');
+ fetch('https://api.github.com/repos/qgh0101/'+a.dataset.repo).then(function(r){return r.json()}).then(function(j){
+  var d=new Date(j.pushed_at);if(isNaN(d))throw 0;
+  u.textContent='更新：'+d.toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+ }).catch(function(){u.textContent='更新时间暂取不到'});
+});
+</script></body></html>
